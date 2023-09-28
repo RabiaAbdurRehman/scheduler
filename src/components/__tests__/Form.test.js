@@ -123,5 +123,32 @@ describe("Form", () => {
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
 })
 
+/****"calls onCancel and resets the input field" is meant to
+ * test the Cancel button functionality
+ * and check if the form resets correctly after it's pressed. */
+it("calls onCancel and resets the input field", () => {
+  const onCancel = jest.fn();
+  const { getByText, getByPlaceholderText, queryByText } = render(
+    <Form
+      interviewers={interviewers}
+      name="Lydia Mill-Jones"
+      onSave={jest.fn()}
+      onCancel={onCancel}
+    />
+  );
 
+  fireEvent.click(getByText("Save"));
+
+  fireEvent.change(getByPlaceholderText("Enter Student Name"), {
+    target: { value: "Lydia Miller-Jones" }
+  });
+
+  fireEvent.click(getByText("Cancel"));
+
+  expect(queryByText(/student name cannot be blank/i)).toBeNull();
+
+  expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
+
+  expect(onCancel).toHaveBeenCalledTimes(1);
+});
 });
