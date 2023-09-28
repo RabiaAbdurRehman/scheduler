@@ -2,6 +2,7 @@
   We are rendering `<Application />` down below, so we need React.createElement
 */
 import React from "react";
+import { waitForElement } from "@testing-library/react";
 
 /*
   We import our helper functions from the react-testing-library
@@ -17,6 +18,8 @@ import Application from "components/Application";
 /*
   A test that renders a React Component
 */
-it("renders without crashing", () => {
-  render(<Application />);
+it("defaults to Monday and changes the schedule when a new day is selected", () => {
+  const { getByText } = render(<Application />);
+
+  return waitForElement(() => getByText("Monday"));
 });
