@@ -59,12 +59,14 @@ export default function Appointment(props) {
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
+
       {mode === EMPTY && <Empty onAdd={onAdd} />}
       {mode === SHOW && (
         <Show
-          student={props.interview.student}
-          interviewer={props.interview.interviewer}
-          onDelete={() => destroy()}
+          student={props.interview?.student}
+          interviewer={props.interview?.interviewer}
+          onDelete={() => transition(CONFIRM)}
+          //onConfirm ={() => }
           onEdit={() => transition(EDIT)}
         />
       )}
@@ -90,6 +92,7 @@ export default function Appointment(props) {
           onConfirm={destroy}
         />
       )}
+
       {mode === ERROR_SAVE && (
         <Error message="Could not book appointment." onClose={back} />
       )}

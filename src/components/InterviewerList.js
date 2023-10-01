@@ -15,6 +15,7 @@ function InterviewerList(props) {
         avatar={interviewer.avatar}
         selected={interviewer.id === props.value}
         setInterviewer={event => props.onChange(interviewer.id)}
+        
       />
     );
   });
