@@ -23,7 +23,7 @@ export default function DayListItem(props) {
       data-testid="day"
     >
       <h2 className="text--regular">{props.name}</h2>
-      <h3 className="text--light">{formatSpots(props.spots)}</h3>
+      <h3 className="text--light" data-testid="spots" >{formatSpots(props.spots)}</h3>
     </li>
   );
 }
