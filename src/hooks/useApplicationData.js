@@ -19,6 +19,7 @@ export default function useApplicationData() {
   });
 
   const setDay = day => dispatch({ type: SET_DAY, day });
+  console.log("setday");
 
   useEffect(() => {
     Promise.all([
